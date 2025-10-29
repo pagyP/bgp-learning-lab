@@ -2,3 +2,4 @@
  - verify instructions end to end
  - verify ASNs to use
  - verify IP addresses to use
+ - add stretch goals e.g. use local pref to prefer one connection

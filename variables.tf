@@ -28,5 +28,6 @@ variable "onprem_router_count" {
 
 variable "location" {
   description = "The azure region to use"
-  type = string
-  default - "uksouth"
+  type        = string
+  default     = "uksouth"
+}

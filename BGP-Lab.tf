@@ -1,13 +1,6 @@
 # Simple Azure BGP Lab with VNet Peering and FRRouting VMs
 
-variable "location" {
-  default = "uksouth"
-}
 
-variable "vm_admin_password" {
-  description = "Password for VM admin user."
-  type        = string
-}
 
 resource "azurerm_resource_group" "bgp_lab" {
   name     = "bgp-lab-rg"

@@ -126,6 +126,27 @@ resource "azurerm_linux_virtual_machine" "vm2" {
   # No cloud-init: students will install and configure FRR manually
 }
 
+resource "azurerm_bastion_host" "bastion" {
+  name                = "bgp-bastion"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.bgp_lab.name
+  sku                 = "Basic"
+
+  ip_configuration {
+    name                 = "bastion-ip-config"
+    subnet_id            = azurerm_subnet.bastion_subnet.id
+    public_ip_address_id = azurerm_public_ip.bastion_public_ip.id
+  }
+}
+
+resource "azurerm_public_ip" "bastion_public_ip" {
+  name                = "bgp-bastion-pip"
+  location            = var.location
+  resource_group_name = azurerm_resource_group.bgp_lab.name
+  allocation_method   = "Static"
+  sku                 = "Standard"
+}
+
 output "vm1_private_ip" {
   value = azurerm_network_interface.nic1.private_ip_address
 }

@@ -1,0 +1,4 @@
+ - Add diagram
+ - verify instructions end to end
+ - verify ASNs to use
+ - verify IP addresses to use

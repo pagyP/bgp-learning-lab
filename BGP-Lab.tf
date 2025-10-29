@@ -126,6 +126,7 @@ resource "azurerm_linux_virtual_machine" "vm2" {
   # No cloud-init: students will install and configure FRR manually
 }
 
+// Might take bastion out for cost reasons.  VMs are Linux so serial console will likely suffice
 resource "azurerm_bastion_host" "bastion" {
   name                = "bgp-bastion"
   location            = var.location

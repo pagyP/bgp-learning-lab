@@ -8,12 +8,9 @@ You will deploy two Ubuntu VMs in separate Azure VNets, peer the VNets, and manu
 
 ## 1. Connect to Your VM
 
-- Use SSH to connect:
-  ```bash
-  ssh bgpuser@<vm1_public_ip>
-  ssh bgpuser@<vm2_public_ip>
-  ```
-- Replace `<vm1_public_ip>` and `<vm2_public_ip>` with the actual IPs from your instructor or Terraform outputs.
+- Use Bastion to SSH to the VMs
+- Or the serial console
+  
 
 ---
 

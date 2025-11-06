@@ -126,8 +126,8 @@ resource "azurerm_linux_virtual_machine" "vm2" {
   # No cloud-init: students will install and configure FRR manually
 }
 
-// Might take bastion out for cost reasons.  VMs are Linux so serial console will likely suffice
-resource "azurerm_bastion_host" "bastion" {
+// Optional Bastion.  VMs are Linux so serial console may suffice
+/* resource "azurerm_bastion_host" "bastion" {
   name                = "bgp-bastion"
   location            = var.location
   resource_group_name = azurerm_resource_group.bgp_lab.name
@@ -147,6 +147,7 @@ resource "azurerm_public_ip" "bastion_public_ip" {
   allocation_method   = "Static"
   sku                 = "Standard"
 }
+*/
 
 output "vm1_private_ip" {
   value = azurerm_network_interface.nic1.private_ip_address

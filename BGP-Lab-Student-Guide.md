@@ -32,7 +32,7 @@ sudo systemctl restart frr
 sudo systemctl status frr
 ```
 
-## 2. Prepare Your VM for Routing
+## 2. Prepare Your VM for Routing On Each VM
 
 - Enable IP forwarding (so your VM can route packets):
 
@@ -42,7 +42,7 @@ sudo systemctl status frr
   sudo sysctl -p
   ```
 
-## 3. Configure BGP
+## 3. Configure BGP on Each VM
 
 - Edit the BGP config file:
   ```bash
@@ -153,14 +153,15 @@ Hint - maybe a static route to your BGP neigbors IP address is needed?
  - Key commands:
  - ```bash
    show ip bgp summary
-    show ip bgp
+   show ip bgp
    ```
 - You can either add the loopback network via editing `/etc/frr/frr.conf` or using `vtysh` as shown earlier.
 - Restart FRR and verify the new route is advertised and received by the neighbor.  You do not need to restart FRR if you use vtysh to add the network.
 - Try using different loopback addresses on each VM.
 
-- Question: What do you notice about the route entries for the loopback addresses in the BGP table?  Are they marked as /32?  Why is that important?
-- Question: What do you notice about the next-hop for the loopback routes?  Is it reachable?
+- Questions: 
+  - What do you notice about the route entries for the loopback addresses in the BGP table?  Are they marked as /32?  Why is that important?
+  -  What do you notice about the next-hop for the loopback routes?  Is it reachable?
 
 ### Exercise 3: Change ASN and Observe Effects
 
@@ -168,7 +169,7 @@ Hint - maybe a static route to your BGP neigbors IP address is needed?
 - Restart FRR and observe that peering fails.
 - Restore the correct ASN and confirm peering is re-established.
 
-- Questions: How do you think you change the remote-as?  if editing frr.conf do you need to restart frr?  If using vtysh how would you do it?
+ - Questions: How do you think you change the remote-as?  if editing frr.conf do you need to restart frr?  If using vtysh how would you do it?
 
 Hint - The word 'no' before a command in frr means to remove that command from the configuration.
 

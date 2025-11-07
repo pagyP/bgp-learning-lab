@@ -119,7 +119,7 @@ Hint - Commands in frr can be completed using tab completion or shortened using 
 Hint - maybe a static route to your BGP neigbors IP address is needed?
 
 - Questions:
- -  Take note of the Up/Down time and the number of prefixes received/sent.  Have any networks been advertised or received yet?
+  -  Take note of the Up/Down time and the number of prefixes received/sent.  Have any networks been advertised or received yet?
 
 ---
 

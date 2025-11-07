@@ -54,7 +54,6 @@ sudo systemctl status frr
    bgp router-id 10.1.0.4
    no bgp ebgp-requires-policy
    neighbor 10.2.0.4 remote-as 65002
-   network 10.1.0.0/24
   ```
 - Example for VM2 (ASN 65002, neighbor 10.1.0.4):
   ```
@@ -62,7 +61,6 @@ sudo systemctl status frr
    bgp router-id 10.2.0.4
    no bgp ebgp-requires-policy
    neighbor 10.1.0.4 remote-as 65001
-   network 10.2.0.0/24
   ```
 - Restart FRR after editing:
   ```bash
@@ -165,6 +163,7 @@ Hint - maybe a static route to your BGP neigbors IP address is needed?
   - How many prefixes are now advertised to the neighbor?  Has the neighbor learned the new route?
   - What do you notice about the route entries for the loopback addresses in the BGP table?  Are they marked as /32?  Why is that important?
   -  What do you notice about the next-hop for the loopback routes?  Is it reachable?
+  - If you add a network statement for a network that does not exist on the router what happens?
   
 
 ### Exercise 3: Change ASN and Observe Effects

@@ -94,8 +94,9 @@ sudo systemctl status frr
 
 Hint - Commands in frr can be completed using tab completion or shortened using abbreviations, for example configure terminal can be entered as conf t.
 
- - Question: What do you think no bgp ebgp-requires-policy does?
- - Questions: Which method do you prefer and why?  Any drawbacks to either method?
+ - Questions:  
+   - What do you think no bgp ebgp-requires-policy does?
+   - Which method do you prefer and why?  Any drawbacks to either method?
 
 ---
 
@@ -117,7 +118,8 @@ Hint - Commands in frr can be completed using tab completion or shortened using 
 
 Hint - maybe a static route to your BGP neigbors IP address is needed?
 
-- Question: Take note of the Up/Down time and the number of prefixes received.  Have any networks been advertised or received yet?
+- Questions:
+ -  Take note of the Up/Down time and the number of prefixes received/sent.  Have any networks been advertised or received yet?
 
 ---
 
@@ -169,7 +171,8 @@ Hint - maybe a static route to your BGP neigbors IP address is needed?
 - Restart FRR and observe that peering fails.
 - Restore the correct ASN and confirm peering is re-established.
 
- - Questions: How do you think you change the remote-as?  if editing frr.conf do you need to restart frr?  If using vtysh how would you do it?
+ - Questions: 
+  - How do you think you change the remote-as?  if editing frr.conf do you need to restart frr?  If using vtysh how would you do it?
 
 Hint - The word 'no' before a command in frr means to remove that command from the configuration.
 

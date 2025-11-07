@@ -125,24 +125,39 @@ Hint - maybe a static route to your BGP neigbors IP address is needed?
 - Re-Confirm both routers show each other as BGP neighbors using `show ip bgp summary`.
 - If peering is not establish, check configuration and troubleshoot.
 
-### Exercise 2: Advertise a New Network
+### Exercise 2: Advertise a New Network Using a loopback address
 
-- On one VM, add a new `network` statement to `/etc/frr/frr.conf` (e.g., `network 10.1.1.0/24`).
-- Or use `vtysh` to add the network dynamically:
+- On VM1, create a loopback interface:
+ ```bash
+  sudo ip addr add 192.168.1.1/32 dev lo
   ```
-  configure terminal
-  router bgp 65001
-   Network x.x.x.x/xx
-  end
-  write memory
+- Add the loopback address to your BGP config:
   ```
+  network 192.168.1.1/32
+  ```
+
+- On each VM, create a loopback interface:
+ ```bash
+  sudo ip addr add 192.168.2.2/32 dev lo
+  ```
+- Add the loopback address to your BGP config:
+ ```
+  network 192.168.2.2/32
+
+  ```
+- You can either add the loopback network via editing `/etc/frr/frr.conf` or using `vtysh` as shown earlier.
 - Restart FRR and verify the new route is advertised and received by the neighbor.  You do not need to restart FRR if you use vtysh to add the network.
+- Try using different loopback addresses on each VM.
 
 ### Exercise 3: Change ASN and Observe Effects
 
 - Change the ASN in one router’s config so it does not match the neighbor’s expected remote-as.
 - Restart FRR and observe that peering fails.
 - Restore the correct ASN and confirm peering is re-established.
+
+- How do you think you change the remote-as?  if editing frr.conf do you need to restart frr?  If using vtysh how would you do it?
+
+Hint - The word 'no' before a command in frr means to remove that command from the configuration.
 
 ### Exercise 4: Add a Third Router (Optional)
 
@@ -183,6 +198,7 @@ prefix-list MYNETS seq 5 permit 10.1.0.0/24
 
 - Advertise the same network from both routers (e.g., both advertise `10.99.99.0/24`).
 - Observe which path is chosen and why (based on BGP attributes).
+- Can you make one path more preferred by adjusting attributes like local preference or AS path?
 
 ### Exercise 8: View and Interpret BGP Messages
 

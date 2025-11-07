@@ -99,7 +99,15 @@ sudo systemctl status frr
   sudo vtysh -c 'show ip bgp summary'
   sudo vtysh -c 'show ip bgp'
   ```
-- You should see your neighbor and exchanged routes.
+  Or use the interactive vtysh shell:
+  ```bash
+  sudo vtysh
+  show ip bgp summary
+  show ip bgp
+  ```
+- You should see your neighbor and exchanged routes, do you?  If not think about the fact that BGP peering requires TCP connectivity on port 179.  And as we are running frr on Linux we need to think about whether frr itself knows how to route to the neighbor IP address.  If you have trouble, check connectivity with `ping` and `telnet <neighbor-ip> 179`.
+
+Hint - maybe a static route to your BGP neigbors IP address is needed?
 
 ---
 
@@ -112,8 +120,16 @@ sudo systemctl status frr
 
 ### Exercise 2: Advertise a New Network
 
-- On one VM, add a new `network` statement to `/etc/frr/bgpd.conf` (e.g., `network 10.1.1.0/24`).
-- Restart FRR and verify the new route is advertised and received by the neighbor.
+- On one VM, add a new `network` statement to `/etc/frr/frr.conf` (e.g., `network 10.1.1.0/24`).
+- Or use `vtysh` to add the network dynamically:
+  ```
+  configure terminal
+  router bgp 65001
+   Network x.x.x.x/xx
+  end
+  write memory
+  ```
+- Restart FRR and verify the new route is advertised and received by the neighbor.  You do not need to restart FRR if you use vtysh to add the network.
 
 ### Exercise 3: Change ASN and Observe Effects
 

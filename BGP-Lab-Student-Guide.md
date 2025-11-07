@@ -112,9 +112,12 @@ Questions: Which method do you prefer and why?  Any drawbacks to either method?
   show ip bgp summary
   show ip bgp
   ```
-- You should see your neighbor and exchanged routes, do you?  If not think about the fact that BGP peering requires TCP connectivity on port 179.  And as we are running frr on Linux we need to think about whether frr itself knows how to route to the neighbor IP address.  .
+- You should see your neighbor in an established state, do you?  If not think about the fact that BGP peering requires TCP connectivity on port 179.  And as we are running frr on Linux we need to think about whether frr itself knows how to route to the neighbor IP address.  .
+- Use 'show ip bgp summary' to check the state of the BGP session or show bgp neighbors <neighbor-ip> to get more detailed information about the BGP session.
 
 Hint - maybe a static route to your BGP neigbors IP address is needed?
+
+- Take note of the Up/Down time and the number of prefixes received.  Have any networks been advertised or received yet?
 
 ---
 

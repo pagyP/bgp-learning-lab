@@ -204,21 +204,8 @@ prefix-list MYNETS seq 5 permit 10.1.0.0/24
 
 - Use FRR logs and `show ip bgp` commands to see BGP updates, withdrawals, and state changes.
 
-### Exercise 9: Advertise Loopback Networks
 
-- On each VM, create a loopback interface:
-  ```bash
-  sudo ip addr add 192.168.1.1/32 dev lo
-  ```
-- Add the loopback address to your BGP config:
-  ```
-  network 192.168.1.1/32
-  ```
-- If you configured a route-map or prefix-list earlier, make sure it permits your loopback prefix, or adjust it as needed.
-- Restart FRR and verify the loopback is advertised and received by the neighbor.
-- Try using different loopback addresses on each VM.
-
-### Exercise 10: Hub-and-Spoke VNet Peering
+### Exercise 9: Hub-and-Spoke VNet Peering
 
 - Deploy additional VNets in Azure and peer them to the VNet containing your Ubuntu VM (the "hub").
 - On each spoke VM, configure BGP to peer with the hub VM.

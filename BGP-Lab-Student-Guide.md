@@ -140,7 +140,7 @@ Hint - maybe a static route to your BGP neigbors IP address is needed?
   ```
   network 192.168.1.1/32
   ```
-- How many prefixes are now advertised to the neighbor?  Has the neighbor learned the new route?
+
 
 - On VM2, create a loopback interface:
 - ```bash
@@ -162,8 +162,10 @@ Hint - maybe a static route to your BGP neigbors IP address is needed?
 - Try using different loopback addresses on each VM.
 
 - Questions: 
+  - How many prefixes are now advertised to the neighbor?  Has the neighbor learned the new route?
   - What do you notice about the route entries for the loopback addresses in the BGP table?  Are they marked as /32?  Why is that important?
   -  What do you notice about the next-hop for the loopback routes?  Is it reachable?
+  
 
 ### Exercise 3: Change ASN and Observe Effects
 

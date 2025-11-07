@@ -91,6 +91,7 @@ resource "azurerm_linux_virtual_machine" "vm1" {
   admin_password                  = var.vm_admin_password
   disable_password_authentication = false
   network_interface_ids           = [azurerm_network_interface.nic1.id]
+  boot_diagnostics {}
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
@@ -113,6 +114,7 @@ resource "azurerm_linux_virtual_machine" "vm2" {
   admin_password                  = var.vm_admin_password
   disable_password_authentication = false
   network_interface_ids           = [azurerm_network_interface.nic2.id]
+  boot_diagnostics {}
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"

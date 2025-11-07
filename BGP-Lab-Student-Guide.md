@@ -45,7 +45,7 @@ sudo systemctl status frr
 
 - Edit the BGP config file:
   ```bash
-  sudo nano /etc/frr/bgpd.conf
+  sudo nano /etc/frr/frr.conf
   ```
 - Example for VM1 (ASN 65001, neighbor 10.2.0.4):
   ```
@@ -72,7 +72,7 @@ sudo systemctl status frr
 
 ## 3a. Alternative: Configure BGP Using vtysh Console
 
-- Instead of editing `/etc/frr/bgpd.conf`, you can use the FRR CLI for live configuration:
+- Instead of editing `/etc/frr/frr.conf`, you can use the FRR CLI for live configuration:
   ```bash
   sudo vtysh
   ```

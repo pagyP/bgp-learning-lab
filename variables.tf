@@ -20,12 +20,6 @@ variable "vm_admin_password" {
   sensitive   = true
 }
 
-variable "onprem_router_count" {
-  description = "Number of on-prem routers (VMs) to create."
-  type        = number
-  default     = 1
-}
-
 variable "location" {
   description = "The azure region to use"
   type        = string

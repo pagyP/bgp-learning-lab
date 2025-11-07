@@ -6,9 +6,10 @@ You will deploy two Ubuntu VMs in separate Azure VNets, peer the VNets, and manu
 
 ---
 
-## 1. Connect to Your VM
+## 1. Depoy Infrastructure and Connect to Your VMs
 
-- Use Bastion to SSH to the VMs
+- Deploy BGP-Lab.tf using Terraform, there are some variables you will need to set before deployment: subscription_id and a password for your VMs
+- Use Bastion (if deployed) to SSH to the VMs
 - Or the serial console
   
 
@@ -87,8 +88,14 @@ sudo systemctl status frr
   end
   write memory
   ```
+- The example above is for VM1; adjust accordingly for VM2.
 - Changes take effect immediately and are saved with `write memory`.
 - Try both methods (editing the config file and using `vtysh`) and compare the experience.
+
+Hint - Commands in frr can be completed using tab completion or shortened using abbreviations, for example configure terminal can be entered as conf t.
+
+Question: What do you think no bgp ebgp-requires-policy does?
+Questions: Which method do you prefer and why?  Any drawbacks to either method?
 
 ---
 
@@ -105,7 +112,7 @@ sudo systemctl status frr
   show ip bgp summary
   show ip bgp
   ```
-- You should see your neighbor and exchanged routes, do you?  If not think about the fact that BGP peering requires TCP connectivity on port 179.  And as we are running frr on Linux we need to think about whether frr itself knows how to route to the neighbor IP address.  If you have trouble, check connectivity with `ping` and `telnet <neighbor-ip> 179`.
+- You should see your neighbor and exchanged routes, do you?  If not think about the fact that BGP peering requires TCP connectivity on port 179.  And as we are running frr on Linux we need to think about whether frr itself knows how to route to the neighbor IP address.  .
 
 Hint - maybe a static route to your BGP neigbors IP address is needed?
 
@@ -115,8 +122,8 @@ Hint - maybe a static route to your BGP neigbors IP address is needed?
 
 ### Exercise 1: Establish BGP Peering
 
-- Confirm both routers show each other as BGP neighbors using `show ip bgp summary`.
-- If peering does not establish, check configuration and troubleshoot.
+- Re-Confirm both routers show each other as BGP neighbors using `show ip bgp summary`.
+- If peering is not establish, check configuration and troubleshoot.
 
 ### Exercise 2: Advertise a New Network
 

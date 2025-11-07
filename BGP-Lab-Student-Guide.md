@@ -94,8 +94,8 @@ sudo systemctl status frr
 
 Hint - Commands in frr can be completed using tab completion or shortened using abbreviations, for example configure terminal can be entered as conf t.
 
-Question: What do you think no bgp ebgp-requires-policy does?
-Questions: Which method do you prefer and why?  Any drawbacks to either method?
+ - Question: What do you think no bgp ebgp-requires-policy does?
+ - Questions: Which method do you prefer and why?  Any drawbacks to either method?
 
 ---
 
@@ -117,7 +117,7 @@ Questions: Which method do you prefer and why?  Any drawbacks to either method?
 
 Hint - maybe a static route to your BGP neigbors IP address is needed?
 
-- Take note of the Up/Down time and the number of prefixes received.  Have any networks been advertised or received yet?
+- Question: Take note of the Up/Down time and the number of prefixes received.  Have any networks been advertised or received yet?
 
 ---
 
@@ -159,8 +159,8 @@ Hint - maybe a static route to your BGP neigbors IP address is needed?
 - Restart FRR and verify the new route is advertised and received by the neighbor.  You do not need to restart FRR if you use vtysh to add the network.
 - Try using different loopback addresses on each VM.
 
-- What do you notice about the route entries for the loopback addresses in the BGP table?  Are they marked as /32?  Why is that important?
-- What do you notice about the next-hop for the loopback routes?  Is it reachable?
+- Question: What do you notice about the route entries for the loopback addresses in the BGP table?  Are they marked as /32?  Why is that important?
+- Question: What do you notice about the next-hop for the loopback routes?  Is it reachable?
 
 ### Exercise 3: Change ASN and Observe Effects
 
@@ -168,7 +168,7 @@ Hint - maybe a static route to your BGP neigbors IP address is needed?
 - Restart FRR and observe that peering fails.
 - Restore the correct ASN and confirm peering is re-established.
 
-- How do you think you change the remote-as?  if editing frr.conf do you need to restart frr?  If using vtysh how would you do it?
+- Questions: How do you think you change the remote-as?  if editing frr.conf do you need to restart frr?  If using vtysh how would you do it?
 
 Hint - The word 'no' before a command in frr means to remove that command from the configuration.
 

@@ -163,7 +163,7 @@ Hint - maybe a static route to your BGP neigbors IP address is needed?
   - How many prefixes are now advertised to the neighbor?  Has the neighbor learned the new route?
   - What do you notice about the route entries for the loopback addresses in the BGP table?  Are they marked as /32?  Why is that important?
   -  What do you notice about the next-hop for the loopback routes?  Is it reachable?
-  - If you add a network statement for a network that does not exist on the router what happens?
+  - If you add a network statement for a network (make one up, e.g. 172.20.16.0/24) that does not exist on the router what happens?
   
 
 ### Exercise 3: Change ASN and Observe Effects

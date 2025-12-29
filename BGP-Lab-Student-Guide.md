@@ -293,6 +293,7 @@ show ip bgp <prefix>
 show ip bgp neighbors
 show ip bgp route-map
 show ip bgp ipv4
+```
 
 Alternatively, use `set local-preference` for more direct control:
 

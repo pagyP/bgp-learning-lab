@@ -94,3 +94,8 @@ marp: true
 ---
 
 _Prepared for Azure BGP Lab – Instructor Edition_
+
+
+##### Notes
+ - When they advertise the vnet addr space it won't advertise the /24 address space, because the VM is in a /27 subnet.  So they need to advertise the /27 subnet to see the route in the neighbor.
+ - To advertise the /24 a route will need to be added into frr for the /24 subnet.

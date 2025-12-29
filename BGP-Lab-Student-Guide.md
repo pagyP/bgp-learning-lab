@@ -115,6 +115,14 @@ Hint - Commands in frr can be completed using tab completion or shortened using 
 - Use 'show ip bgp summary' to check the state of the BGP session or show bgp neighbors <neighbor-ip> to get more detailed information about the BGP session.
 
 Hint - maybe a static route to your BGP neigbors IP address is needed?
+Hint 2 - You only need a host route to the neighbor IP address, not the whole subnet.  
+Hint3 - You can add a static route using the ip route command, for example:
+```bash 
+configure terminal
+ip route <neighbor-ip> <next-hop-ip>
+end
+write memory
+```
 
 - Questions:
   -  Take note of the Up/Down time and the number of prefixes received/sent.  Have any networks been advertised or received yet?
@@ -177,12 +185,26 @@ Hint - maybe a static route to your BGP neigbors IP address is needed?
 
 Hint - The word 'no' before a command in frr means to remove that command from the configuration.
 
-### Exercise 4: Add a Third Router (Optional)
+### Exercise 4: Examine Routes Learned from Multiple Routers
 
-- Deploy a third VM in a new VNet and peer the VNet with the others.
-- Install FRR and configure BGP with a unique ASN.
-- Establish peering with one or both existing routers.
+  
 - Observe how routes are exchanged in a multi-router topology.
+- - Use sh ip bgp detail to see more detailed information about the BGP routes learned.
+- Examine the attributes of the routes learned from different neighbors.
+  - What is the AS path for each route?
+  - What do you notice about the path a route will take?  *> indicates the best path.
+  - What is the next-hop for each route?
+  - What is the origin of the route?
+  - Has the route originated by a neighbor or is it being advertised by another AS?
+  - Does a router receive its own advertised routes back from a neighbor?
+
+ Key command:
+- ```
+sh ip bgp detail
+  ```
+
+Question:
+ - Why doesn't a router receive its own advertised routes back from a neighbor?
 
 ### Exercise 5: Implement Route Filtering
 

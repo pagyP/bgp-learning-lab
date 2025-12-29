@@ -258,9 +258,56 @@ ip prefix-list MYNETS seq 5 permit 192.168.1.1/32
 
 ### Exercise 7: Explore BGP Path Selection
 
-- Advertise the same network from both routers (e.g., both advertise `10.99.99.0/24`).
+- Advertise the same network from both VM1 and VM2 (e.g., both advertise `10.10.10.10/32`).
 - Observe which path is chosen and why (based on BGP attributes).
+  - Use show ip bgp ipv4 on VM3 to see the selected path.
 - Can you make one path more preferred by adjusting attributes like local preference or AS path?
+
+**Example: Prefer a route based on AS path length**
+
+Scenario: Both VM1 and VM2 advertise `10.10.10.10/32`. VM3 receives this route from both neighbors but should prefer the path from VM2. 
+
+On **VM3**, apply a route-map to prepend VM1's ASN, making that path appear longer (less preferred):
+
+```
+route-map PREFER_VM2 permit 10
+ match ip address prefix-list TARGET_NET
+ set as-path prepend 65001
+!
+ip prefix-list TARGET_NET seq 5 permit 10.10.10.10/32
+!
+router bgp 65003
+ neighbor 10.1.0.4 remote-as 65001
+ neighbor 10.1.0.4 route-map PREFER_VM2 in
+!
+end
+write memory
+```
+
+Now routes from VM2 (shorter AS path) are preferred over routes from VM1 (artificially lengthened). Use `show ip bgp 10.10.10.10/32` to verify the selected path.
+
+Key commands:
+```bash
+show ip bgp <prefix>
+show ip bgp neighbors
+show ip bgp route-map
+show ip bgp ipv4
+
+Alternatively, use `set local-preference` for more direct control:
+
+```
+route-map SET_LOCALPREF permit 10
+ set local-preference 200
+!
+router bgp 65001
+ neighbor 10.2.0.4 route-map SET_LOCALPREF in
+end
+write memory
+```
+
+Higher local preference (0–4294967295, default 100) is preferred. Use `clear ip bgp <neighbor-ip> soft in` to apply the change without dropping the BGP session.
+
+Note - There are many ways to have achieved the above goal, this is just one example.
 
 ### Exercise 8: View and Interpret BGP Messages
 
@@ -286,5 +333,3 @@ Feel free to experiment further—change router-ids, add more networks, or try a
 - Ensure firewall rules allow BGP (TCP/179) between VMs.
 
 ---
-
-Happy learning!

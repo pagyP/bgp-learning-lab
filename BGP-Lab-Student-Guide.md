@@ -199,9 +199,10 @@ Hint - The word 'no' before a command in frr means to remove that command from t
   - Does a router receive its own advertised routes back from a neighbor?
 
  Key command:
-- ```bash
-sh ip bgp detail
-  ```
+ ```bash
+   show ip bgp summary
+   show ip bgp detail
+   ```
 
 Question:
  - Why doesn't a router receive its own advertised routes back from a neighbor?

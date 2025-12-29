@@ -209,6 +209,11 @@ Question:
 ### Exercise 5: Implement Route Filtering
 
 - Remove `no bgp ebgp-requires-policy` from your BGP configuration to enable outbound policy enforcement.
+    - Change the config using vtysh or by editing frr.conf and restarting frr.  If using vtysh enter the command bgp ebgp-requires-policy in router bgp configuration mode.
+        - Restart the FRR service (on this occassion whether you used vtysh or frr) and observe that no routes are advertised to the neighbor, nor received from the neighbor.
+        - This is because with ebgp-requires-policy enabled, BGP will not advertise or accept any routes unless explicitly permitted by a route-map or prefix-list.
+        
+- Now, implement a simple route filtering policy:
 - Add a prefix-list or route-map to filter which networks are advertised or accepted.
 - Example: Only advertise `10.1.0.0/24` and block others.
 - Observe how filtering changes the routing table on the neighbor.
@@ -225,8 +230,25 @@ router bgp 65001
 route-map OUTBOUND permit 10
  match ip address prefix-list MYNETS
 !
-prefix-list MYNETS seq 5 permit 10.1.0.0/24
+ip prefix-list MYNETS seq 5 permit 192.168.1.1/32
 ```
+ - The above sets an outbound route-map on the neighbor to only advertise the loopback address we created earlier.
+ - If you look at the BGP table on the neighbor you should only see the loopback address being advertised.
+ - The other BGP neighbors still have no bgp ebgp-requires-policy enabled so they will still receive all routes.
+ - Try modifying the prefix-list or route-map to see how it affects advertised and received routes.
+ - Try setting an inbound route-map to filter received routes.
+ Note - when you configure a route map and apply it to a neigbor you need to restart frr for the changes to take effect or do a reset on the BGP peering.
+
+- Key commands:
+  ```bash
+  show ip bgp
+  show ip bgp neighbors
+  show ip bgp route-map
+  show ip prefix-list
+  sh ip bgp ipv4 
+  clear ip bgp <neighbor-ip> soft in
+  clear ip bgp <neighbor-ip> soft out
+  ```
 
 ### Exercise 6: Simulate a Link Failure
 

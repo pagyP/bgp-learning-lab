@@ -91,7 +91,7 @@ sudo systemctl status frr
   end
   write memory
   ```
-- The example above is for VM1; adjust accordingly for VM2.
+- The example above is for VM1; adjust accordingly for VM2 and VM3
 - Changes take effect immediately and are saved with `write memory`.
 - Try both methods (editing the config file and using `vtysh`) and compare the experience.
 

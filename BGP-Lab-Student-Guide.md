@@ -2,7 +2,7 @@
 
 ## Lab Overview
 
-You will deploy two Ubuntu VMs in separate Azure VNets, peer the VNets, and manually install and configure FRRouting (FRR) to establish BGP peering between the VMs.
+You will deploy three Ubuntu VMs in separate Azure VNets, peer the VNets, and manually install and configure FRRouting (FRR) to establish BGP peering between the VMs.
 
 Welcome! This lab is designed for anyone new to BGP (Border Gateway Protocol) who wants hands-on experience with real routing fundamentals. You'll work in a practical Azure environment to see how BGP actually works—how routers discover each other, exchange routes, and make decisions about which path traffic should take. No prior BGP knowledge is required; we'll learn by doing.
 Sometimes this guide may give you somewhat explicit instructions and sometimes it may leave things more open-ended for you to explore. This is intentional to encourage experimentation and deeper understanding.

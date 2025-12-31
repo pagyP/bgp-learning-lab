@@ -323,13 +323,16 @@ Note - There are many ways to have achieved the above goal, this is just one exa
 
 ### Exercise 9: Hub-and-Spoke VNet Peering
 
-- Deploy additional VNets in Azure and peer them to the VNet containing your Ubuntu VM (the "hub").
-- On each spoke VM, configure BGP to peer with the hub VM.
-- Advertise unique prefixes from each spoke and verify they are learned by the hub and other spokes (if transit is enabled).
-- If you use route-maps or prefix-lists, update them to permit the new prefixes from spokes and the hub.
-- Discuss how this topology maps to real-world cloud and enterprise networks.
+- Deploy additional VNets in Azure and peer them to one of your existing vnets.
+- Advertise the new vnet CIDR range from the router in the existing vnet you peered to.
+- Verify that the new routes are learned by the other routers.
 
-Feel free to experiment further—change router-ids, add more networks, or try advanced BGP features!
+Questions:
+ - Why aren't the routes from the new vnet being learned by all routers?
+ - How can you change the configuration to allow all routers to learn the new routes?
+Hint - Maybe look up bgp network import check?
+
+When you finished and if time allows, feel free to experiment further—change router-ids, add more networks, or try advanced BGP features!
 
 ---
 

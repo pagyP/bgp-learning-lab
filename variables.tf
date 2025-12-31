@@ -107,7 +107,7 @@ variable "vnet_peerings" {
       source_vnet = "vnet3"
       target_vnet = "vnet2"
     }
-  }
+}
 }
 
 variable "vms" {
